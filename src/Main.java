@@ -1,15 +1,40 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+menu();
+
     }
+    static void menu() {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Encendiendo la Radio...indica la frecuencia");
+    double frecuenciaInicial= sc.nextDouble();
+    SintonizadorFM radio=new SintonizadorFM(frecuenciaInicial);
+        int opcion=0;
+        do {
+            System.out.println("***RADIO FM***");
+            System.out.println("1. Subir Frecuencia");
+            System.out.println("2. Bajar Frecuencia ");
+            System.out.println("3. Mostrar Frecuencia ");
+            System.out.println("4. Salir ");
+            System.out.println("Opción--> ");
+            try{
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1->radio.subirFrecuencia();
+                    case 2->radio.bajarFrecuencia();
+                    case 3-> radio.mostrarFrecuencia();
+                    case 4->System.out.println("Apagando la radio");
+                    default -> System.out.println("Opción no valida");
+                }
+            }catch(Exception e){
+                System.out.println("Opción no valida");
+                sc.nextLine();
+            }
+
+        }while(opcion!=4);
+
+    }
+
 }
